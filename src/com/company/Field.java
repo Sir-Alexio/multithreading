@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 @SuppressWarnings("serial")
+
 public class Field extends JPanel {
     // Флаг приостановленности движения
     private boolean paused;

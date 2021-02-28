@@ -10,6 +10,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 @SuppressWarnings("serial")
+
 public class MainFrame extends JFrame {
     // Константы, задающие размер окна приложения, если оно
 // не распахнуто на весь экран
@@ -45,8 +46,15 @@ public class MainFrame extends JFrame {
                 }
             }
         };
+        Action magnetics = new AbstractAction("Магнетизм") {
+            public void actionPerformed(ActionEvent event) {
+
+
+            }
+        };
         menuBar.add(ballMenu);
         ballMenu.add(addBallAction);
+        ballMenu.add(magnetics);
         JMenu controlMenu = new JMenu("Управление");
         menuBar.add(controlMenu);
         Action pauseAction = new AbstractAction("Приостановить движение"){
