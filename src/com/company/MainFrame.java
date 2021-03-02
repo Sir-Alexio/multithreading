@@ -30,6 +30,9 @@ public class MainFrame extends JFrame {
                 (kit.getScreenSize().height - HEIGHT)/2);
 // Установить начальное состояние окна развѐрнутым на весь экран
 
+
+
+
         setExtendedState(MAXIMIZED_BOTH);
 // Создать меню
         JMenuBar menuBar = new JMenuBar();
