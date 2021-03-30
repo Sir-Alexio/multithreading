@@ -20,6 +20,7 @@ public class MainFrame extends JFrame {
     private JMenuItem resumeMenuItem;
     // Поле, по которому прыгают мячи
     private Field field = new Field();
+
     // Конструктор главного окна приложения
     public MainFrame() {
         super("Программирование и синхронизация потоков");
@@ -29,9 +30,6 @@ public class MainFrame extends JFrame {
         setLocation((kit.getScreenSize().width - WIDTH)/2,
                 (kit.getScreenSize().height - HEIGHT)/2);
 // Установить начальное состояние окна развѐрнутым на весь экран
-
-
-
 
         setExtendedState(MAXIMIZED_BOTH);
 // Создать меню
@@ -49,15 +47,32 @@ public class MainFrame extends JFrame {
                 }
             }
         };
-        Action magnetics = new AbstractAction("Магнетизм") {
+       /* Action magneticButton = new AbstractAction("Магнетизм") {
             public void actionPerformed(ActionEvent event) {
+                field.magneticOn();
+            }
+        };*/
+        JMenu magneticMenu = new JMenu("Магнетизм");
 
 
+        Action magneticActionOff = new AbstractAction("Выключить") {
+            public void actionPerformed(ActionEvent event) {
+                field.magneticOff();
             }
         };
+        Action magneticActionOn = new AbstractAction("Включить") {
+            public void actionPerformed(ActionEvent event) {
+                field.magneticOn();
+            }
+        };
+
         menuBar.add(ballMenu);
         ballMenu.add(addBallAction);
-        ballMenu.add(magnetics);
+
+        menuBar.add(magneticMenu);
+        magneticMenu.add(magneticActionOn);
+        magneticMenu.add(magneticActionOff);
+
         JMenu controlMenu = new JMenu("Управление");
         menuBar.add(controlMenu);
         Action pauseAction = new AbstractAction("Приостановить движение"){

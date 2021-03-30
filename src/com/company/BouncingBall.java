@@ -10,7 +10,9 @@ public class BouncingBall implements Runnable {
     private static final int MIN_RADIUS = 3;
     // Максимальная скорость, с которой может летать мяч
     private static final int MAX_SPEED = 15;
+    private int text;
     private Field field;
+
     private int radius;
     private Color color;
     // Текущие координаты мяча
@@ -20,7 +22,11 @@ public class BouncingBall implements Runnable {
     private int speed;
     private double speedX;
     private double speedY;
+    public int setText(){
+        return text;
+    }
     // Конструктор класса BouncingBall
+
     public BouncingBall(Field field) {
 // Необходимо иметь ссылку на поле, по которому прыгает мяч,
 // чтобы отслеживать выход за его пределы
@@ -56,6 +62,9 @@ public class BouncingBall implements Runnable {
     }
     // Метод run() исполняется внутри потока. Когда он завершает работу,
 // то завершается и поток
+
+
+
     public void run() {
         try {
 // Крутим бесконечный цикл, т.е. пока нас не прервут,
@@ -70,21 +79,33 @@ public class BouncingBall implements Runnable {
 // Достигли левой стенки, отскакиваем право
                     speedX = -speedX;
                     x = radius;
+                    if(field.setMagnetic()){
+                        field.threadStop();
+                    }
                 } else
                 if (x + speedX >= field.getWidth() - radius) {
 // Достигли правой стенки, отскок влево
                     speedX = -speedX;
                     x=new Double(field.getWidth()-radius).intValue();
+                    if(field.setMagnetic()){
+                        field.threadStop();
+                    }
                 } else
                 if (y + speedY <= radius) {
 // Достигли верхней стенки
                     speedY = -speedY;
                     y = radius;
+                    if(field.setMagnetic()){
+                        field.threadStop();
+                    }
                 } else
                 if (y + speedY >= field.getHeight() - radius) {
 // Достигли нижней стенки
                     speedY = -speedY;
                     y=new Double(field.getHeight()-radius).intValue();
+                    if(field.setMagnetic()){
+                        field.threadStop();
+                    }
                 } else {
 // Просто смещаемся
                     x += speedX;

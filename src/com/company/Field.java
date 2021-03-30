@@ -13,6 +13,7 @@ import javax.swing.Timer;
 public class Field extends JPanel {
     // Флаг приостановленности движения
     private boolean paused;
+    private boolean magnetic = false;
     // Динамический список скачущих мячей
     private ArrayList<BouncingBall> balls = new ArrayList<BouncingBall>(10);
     // Класс таймер отвечает за регулярную генерацию событий ActionEvent
@@ -30,6 +31,24 @@ public class Field extends JPanel {
         setBackground(Color.WHITE);
 // Запустить таймер
         repaintTimer.start();
+    }
+
+    public  void magneticOn() {
+        magnetic = true;
+    }
+    public synchronized void magneticOff() {
+       magnetic = false;
+       notifyAll();
+    }
+    public boolean setMagnetic(){
+        return magnetic;
+    }
+
+    public synchronized void threadStop()throws
+            InterruptedException{
+
+            wait();
+
     }
     // Унаследованный от JPanel метод перерисовки компонента
     public void paintComponent(Graphics g) {
@@ -55,6 +74,7 @@ public class Field extends JPanel {
 // Включить режим паузы
         paused = true;
     }
+
     // Метод синхронизированный, т.е. только один поток может
 // одновременно быть внутри
     public synchronized void resume() {
@@ -73,5 +93,8 @@ public class Field extends JPanel {
             wait();
         }
     }
+
+
+
 }
 
